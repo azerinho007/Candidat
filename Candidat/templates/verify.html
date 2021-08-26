@@ -1,0 +1,18 @@
+{% extends 'login.html' %}
+{% load static %}
+    {% block title %}
+    <title>Confirm</title>
+    {% endblock %}
+
+  {% block type %}
+<!-- Login Form -->
+<br><br>
+<form action="{% url 'login:verify' 1 %}" method="post">
+    {% csrf_token %}
+  <input type="text" id="login" class="fadeIn second" name="code" placeholder="Code" required>
+  <input type="submit" class="fadeIn fourth btn btn-success" value="Verify">
+     {% if msg == 1 %}
+    <div> False verification </div>
+    {% endif %}
+</form>
+  {% endblock %}

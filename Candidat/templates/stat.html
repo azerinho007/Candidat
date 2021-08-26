@@ -1,0 +1,35 @@
+{% extends 'blank.html' %}
+{% load static %}
+{% block title %}
+<link href="{% static 'css/raccorcisor.css' %}" rel="stylesheet">
+{% endblock %}
+{% block prince %}
+{% if ok == 1 %}
+<div class="container">
+        <div class="row">
+            <div class="col-*-12">
+                <div class="table-responsive">
+                                <table class="table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-top-0">Mini-URL</th>
+                                            <th class="border-top-0">number of accesses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>127.0.0.1:8000/a/filter/{{ user.miniurl }}</td>
+                                            <td><a class="btn btn-notify" href="#">{{ user.nb }}</a></td>
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                </table>
+                </div>
+            </div>
+        </div>
+</div>
+{% endif %}
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+{% endblock %}

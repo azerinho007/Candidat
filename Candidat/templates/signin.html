@@ -1,0 +1,27 @@
+{% extends 'login.html' %}
+{% load static %}
+    {% block title %}
+    <title>Sign in </title>
+    {% endblock %}
+
+{% block active %}
+<h2 class="active"> <a href="{% url  'login:sign' msg %}">Sign in </a></h2>
+      <h2 class="inactive underlineHover"> <a href="{% url  'login:sigp'%}">Sign Up </a></h2>
+{% endblock %}
+  {% block type %}
+<!-- Login Form -->
+<form action="{% url 'login:sign' 1 %}" method="post">
+    {% csrf_token %}
+  <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" required>
+  <input type="password" id="password" class="fadeIn third" name="pwd" placeholder="password" required>
+  <input type="submit" class="fadeIn fourth" value="Log In">
+    {% if msg == 1 %}
+    <div> False identitifactions </div>
+    {% endif %}
+</form>
+
+ <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+  {% endblock %}

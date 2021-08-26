@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.png' %}">
+   <link href="{% static 'css/style.min.css' %}" rel="stylesheet">
+    {% block title %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+
+        <header class="topbar" data-navbarbg="skin5">
+            <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+                <div class="navbar-header" data-logobg="skin6">
+
+                    <a class="navbar-brand" href="{% url 'login:home' %}">
+                        <span class="logo-text">
+                            <!-- dark Logo text -->
+                            <img src="{% static 'logo-text.jpg' %}" alt="homepage" />
+                        </span>
+                    </a>
+                    <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+                        href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                </div>
+
+                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+                    <ul class="navbar-nav d-none d-md-block d-lg-none">
+                        <li class="nav-item">
+                            <a class="nav-toggler nav-link waves-effect waves-light text-white"
+                                href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </header>
+
+        <aside class="left-sidebar" data-sidebarbg="skin6">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <!-- User Profile-->
+                        {% if request.user.is_authenticated %}
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'app:update' request.user.id %}"
+                                aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <span class="hide-menu">My profile</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item pt-2">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'app:api' request.user.id %}"
+                                aria-expanded="false">
+                                <i class="far fa-clock" aria-hidden="true"></i>
+                                <span class="hide-menu">Raccorcisor</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'app:stat' request.user.id %}"
+                                aria-expanded="false">
+                                <i class="fa fa-table" aria-hidden="true"></i>
+                                <span class="hide-menu">My statistics</span>
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if request.user.is_authenticated %}
+                            <li class="text-center p-20 upgrade-btn">
+                                <a href="{% url 'login:logout' %}"
+                                    class="btn d-grid btn-danger text-white" target="_self">
+                                    Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="text-center p-20 upgrade-btn">
+                                <a href="{% url 'login:sign' 0  %}"
+                                    class="btn d-grid btn-info text-white" target="_self">
+                                    Enter</a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+
+        <div class="page-wrapper" style="min-height: 250px;">
+            <div class="container">
+
+                {% block prince %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <div class="col-12-md">
+                            <h1 class="box-title">Shortner your URL</h1>
+                            <br>
+                            <img src="{% static 'can.jpg' alt='get it ' %}" width="100%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+     <script src="{% static 'plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/sidebarmenu.js' %"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

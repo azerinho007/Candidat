@@ -1,0 +1,24 @@
+{% extends 'login.html' %}
+{% load static %}
+    {% block title %}
+    <title>Sign up </title>
+    {% endblock %}
+
+{% block active %}
+<h2 class="inactive underlineHover"> <a href="{% url  'login:sign' 0 %}">Sign in </a></h2>
+      <h2 class="active"> <a href="{% url  'login:sigp'%}">Sign Up </a></h2>
+{% endblock %}
+
+  {% block type %}
+<!-- Login Form -->
+<form action="{% url 'login:sigp'%}", method="post">
+    {% csrf_token %}
+  <input type="text" id="login" class="fadeIn second" name="username" placeholder="username" required>
+  <input type="text" id="fname" class="fadeIn second" name="fname" placeholder="first_name" required>
+  <input type="text" id="lname" class="fadeIn second" name="lname" placeholder="last_name" required>
+  <input type="email" id="mail" class="fadeIn second" name="mail" placeholder="email" required>
+  <input type="password" id="password" class="fadeIn second" name="pwd" placeholder="password" required>
+  <input type="submit" class="fadeIn fourth" value="Inscrit">
+
+</form>
+  {% endblock %}

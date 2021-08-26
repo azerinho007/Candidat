@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %}
+
+{% block principale %}
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+      {% block active %}
+
+    {% endblock %}
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="{% static 'cand.jpg' %}" id="icon" alt="User Icon" />
+    </div>
+
+      {% block type %}
+      {% endblock %}
+
+
+
+  </div>
+</div>
+{% endblock %}
